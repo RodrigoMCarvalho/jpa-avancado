@@ -22,7 +22,7 @@ public class JpaConfigurator {
 	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	    dataSource.setUrl("jdbc:mysql://localhost/projeto_jpa");
+	    dataSource.setUrl("jdbc:mysql://localhost/db_jpa_avancado");
 	    dataSource.setUsername("root");
 	    dataSource.setPassword("");
 

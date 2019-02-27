@@ -32,7 +32,7 @@ public class CriadorDeProdutos {
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
 				Loja casaDoCodigo = new Loja();
-				casaDoCodigo.setNome("Casa do C√≥digo");
+				casaDoCodigo.setNome("Casa do CÛdigo");
 				
 				em.persist(casaDoCodigo);
 				
@@ -44,11 +44,11 @@ public class CriadorDeProdutos {
 				Categoria tecnologia = new Categoria("Tecnologia");
 				em.persist(tecnologia);
 				
-				Categoria musica = new Categoria("M√∫sica");
+				Categoria musica = new Categoria("M˙sica");
 				em.persist(musica);
 				
 				Produto cursoDeViolao = new Produto();
-				cursoDeViolao.setNome("Curso de Viol√£o");
+				cursoDeViolao.setNome("Curso de Viol„o");
 				cursoDeViolao.setLoja(musicalAlegre);
 				cursoDeViolao.setPreco(49.0);
 				cursoDeViolao.setDescricao("Estude com os melhores professores e aprenda no seu ritmo, sem sair de casa.");
@@ -58,17 +58,17 @@ public class CriadorDeProdutos {
 				em.persist(cursoDeViolao);
 				
 				Produto livroDeArquitetura = new Produto();
-				livroDeArquitetura.setNome("Introdu√ßao a Arquitetura Java e Design de projetos com Java");
+				livroDeArquitetura.setNome("IntriduÁ„o a Arquitetura Java e Design de projetos com Java");
 				livroDeArquitetura.setLoja(casaDoCodigo);
 				livroDeArquitetura.setPreco(30.0);
 //				livroDeArquitetura.adicionarCategorias(tecnologia);
 				livroDeArquitetura.setDescricao("Neste livro, os autores, conhecidos especialistas da "
-											   + " √°rea, apresentam muitos t√≥picos que aparecem com frequ√™ncia"
+											   + " √°rea, apresentam muitos tÛpicos que aparecem com freguÍncia"
 											   + " na plataforma Java, incluindo desde modelagem e design das "
-											   + "classes, at√© detalhes importantes das tecnologias mais utilizadas."
-											   + "  Sempre com uma vis√£o t√©cnica e pr√°tica capaz de elucidar muitas "
-											   + "quest√µes enfrentadas tanto pelo profissional iniciante quanto por "
-											   + "aquele que est√° adquirindo mais experi√™ncia na plataforma.");
+											   + "classes, atÈ detalhes importantes das tecnologias mais utilizadas."
+											   + "  Sempre com uma vis„o tÈcnica e pr·tica capaz de elucidar muitas "
+											   + "questıes enfrentadas tanto pelo profissional iniciante quanto por "
+											   + "aquele que est„o adquirindo mais experiÍncia na plataforma.");
 				
 				livroDeArquitetura.setLinkDaFoto("http://www.arquiteturajava.com.br/img/capa-livro.png");
 				
@@ -79,20 +79,20 @@ public class CriadorDeProdutos {
 				livroDeSpring.setLoja(casaDoCodigo);
 				livroDeSpring.setPreco(30.0);
 //				livroDeSpring.adicionarCategorias(tecnologia);
-				livroDeSpring.setDescricao("Criado para simplificar o desenvolvimento de aplica√ß√µes Java, "
+				livroDeSpring.setDescricao("Criado para simplificar o desenvolvimento de aplicaÁıes Java, "
 						+ "o Spring se tornou um dos frameworks de mais destaque dentro desse grande ambiente.  "
-						+ "Aprenda muito mais que o b√°sico do Spring, desde o tradicional Container de Invers√£o "
-						+ "de Controle e Inje√ß√£o de Depend√™ncias, passando pelos robustos m√≥dulos de seguran√ßa, "
-						+ "transa√ß√µes, programa√ß√£o orientada a aspectos e tamb√©m o fant√°stico m√≥dulo MVC, o SpringMVC.");
+						+ "Aprenda muito mais que o b√°sico do Spring, desde o tradicional Container de Invers„o "
+						+ "de Controle e InjeÁ„o de DependÍncias, passando pelos robustos mÛdulos de seguranÁa, "
+						+ "transaÁıes, programaÁ„o orientada a aspectos e tambÈm o fant√°stico mÛdulo MVC, o SpringMVC.");
 				
 				livroDeSpring.setLinkDaFoto("http://cdn.shopify.com/s/files/1/0155/7645/products/spring-framework-featured_large.png?v=1411567960");
 				
 				em.persist(livroDeSpring);
 				
 				Produto violao = new Produto();
-				violao.setNome("Viol√£o");
+				violao.setNome("Viol„o");
 				violao.setLoja(musicalAlegre);
-				violao.setDescricao("Excelente viol√£o");
+				violao.setDescricao("Excelente viol„o");
 				violao.setPreco(500.0);
 //				violao.adicionarCategorias(musica);
 				violao.setLinkDaFoto("http://www.marillac.g12.br/imgs/atividade%20complementar/violao.jpg");
