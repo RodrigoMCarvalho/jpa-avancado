@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -33,63 +34,67 @@ public class ProdutoDao {
 	}
 	
 	public List<Produto> getProdutos(String nome, Integer categoriaId, Integer lojaId) {
-//		String jpql = "SELECT p FROM Produto p";
-//		
-//		if(categoriaId != null) {
-//			jpql += " JOIN FETCH p.categorias c"
-//				  + " WHERE c.id = :pCategoriaId AND";
-//		} else {
-//			jpql += " WHERE";
-//		}
-//		if(lojaId != null) {
-//			jpql += " p.loja.id = :pLojaId AND";
-//		}
-//		if(!nome.isEmpty()) {
-//			jpql += " p.nome LIKE :pNomeProduto AND";
-//		}
-//		jpql += " 1 = 1"; //devido ao AND no final
-//		
-//		TypedQuery<Produto> query = em.createQuery(jpql, Produto.class);
-//		
-//		if(categoriaId != null) 
-//			query.setParameter("pCategoriaId", categoriaId);
-//		if(lojaId != null) 
-//			query.setParameter("pLojaId", lojaId);
-//		if(!nome.isEmpty())
-//			query.setParameter("pNomeProduto","%" + nome + "%");
-//		
-//		return query.getResultList();
-//		
-//		=========================================================== 
+		String jpql = "SELECT p FROM Produto p";
 		
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		CriteriaQuery<Produto> query = criteriaBuilder.createQuery(Produto.class);
-		Root<Produto> root = query.from(Produto.class);
-		
-		Path<String> nomePath = root.<String>get("nome");
-		Path<Integer> lojaPath = root.<Loja>get("loja").<Integer>get("id");
-		Path<Integer> categoriqaPath = root.join("categorias").<Integer>get("id");
-		
-		List<Predicate> predicates = new ArrayList<>();
-		
-		if(!nome.isEmpty()) {
-			Predicate nomeIgual = criteriaBuilder.like(nomePath, "%" + nome + "%");
-			predicates.add(nomeIgual);
-		}
 		if(categoriaId != null) {
-			Predicate categoriaIgual = criteriaBuilder.equal(categoriqaPath, categoriaId);
-			predicates.add(categoriaIgual);
+			jpql += " JOIN FETCH p.categorias c"
+				  + " WHERE c.id = :pCategoriaId AND";
+		} else {
+			jpql += " WHERE";
 		}
 		if(lojaId != null) {
-			Predicate lojaIgual = criteriaBuilder.equal(lojaPath, lojaId);
-			predicates.add(lojaIgual);
+			jpql += " p.loja.id = :pLojaId AND";
 		}
+		if(!nome.isEmpty()) {
+			jpql += " p.nome LIKE :pNomeProduto AND";
+		}
+		jpql += " 1 = 1"; //devido ao AND no final
 		
-		query.where((Predicate[]) predicates.toArray(new Predicate[0]));
+		TypedQuery<Produto> query = em.createQuery(jpql, Produto.class);
 		
-		TypedQuery<Produto> typedQuery = em.createQuery(query);
+		if(categoriaId != null) 
+			query.setParameter("pCategoriaId", categoriaId);
+		if(lojaId != null) 
+			query.setParameter("pLojaId", lojaId);
+		if(!nome.isEmpty())
+			query.setParameter("pNomeProduto","%" + nome + "%");
 		
-		return typedQuery.getResultList();
+		return query.getResultList();
+		
+//		=========================================================== 
+		
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//	
+//		CriteriaQuery<Produto> query = criteriaBuilder.createQuery(Produto.class);
+//		Root<Produto> root = query.from(Produto.class);
+//		
+//		Path<String> nomePath = root.<String>get("nome");
+//		Path<Integer> lojaPath = root.<Loja>get("loja").<Integer>get("id");
+//		Path<Integer> categoriqaPath = root.join("categorias", JoinType.LEFT).<Integer>get("id");
+//		
+//		List<Predicate> predicates = new ArrayList<>();
+//		
+//		if(!nome.isEmpty()) {
+//			Predicate nomeIgual = criteriaBuilder.like(nomePath, "%" + nome + "%");
+//			predicates.add(nomeIgual);
+//		}
+//		if(categoriaId != null) {
+//			Predicate categoriaIgual = criteriaBuilder.equal(categoriqaPath, categoriaId);
+//			predicates.add(categoriaIgual);
+//		}
+//		if(lojaId != null) {
+//			Predicate lojaIgual = criteriaBuilder.equal(lojaPath, lojaId);
+//			predicates.add(lojaIgual);
+//		}
+//		
+//		query.where((Predicate[]) predicates.toArray(new Predicate[0]));
+//		query.distinct(true);
+//		
+//		TypedQuery<Produto> typedQuery = em.createQuery(query);
+//		
+//		query.distinct(true);
+//		
+//		return typedQuery.getResultList();
 	}
 
 	public void insere(Produto produto) {
